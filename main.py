@@ -49,7 +49,7 @@ from_unit = tk.StringVar(value="Celsius")
 from_combo = ttk.Combobox(
     frame,
     textvariable=from_unit,
-    values=["Celsius", "Fahrenheit"],
+    values=["Celsius", "Fahrenheit", "Kelvin"],
     state="readonly"
 )
 from_combo.pack(pady=(5, 15), fill="x")
@@ -66,7 +66,7 @@ to_unit = tk.StringVar(value="Fahrenheit")
 to_combo = ttk.Combobox(
     frame,
     textvariable=to_unit,
-    values=["Celsius", "Fahrenheit"],
+    values=["Celsius", "Fahrenheit", "Kelvin"],
     state="readonly"
 )
 to_combo.pack(pady=(5, 20), fill="x")
@@ -87,19 +87,40 @@ def convert():
         source = from_unit.get()
         target = to_unit.get()
 
+        # Same unit
         if source == target:
             result = temp
 
+        # Celsius conversions
         elif source == "Celsius" and target == "Fahrenheit":
             result = (temp * 9 / 5) + 32
 
-        else:
+        elif source == "Celsius" and target == "Kelvin":
+            result = temp + 273.15
+
+        # Fahrenheit conversions
+        elif source == "Fahrenheit" and target == "Celsius":
             result = (temp - 32) * 5 / 9
 
-        unit = "°F" if target == "Fahrenheit" else "°C"
+        elif source == "Fahrenheit" and target == "Kelvin":
+            result = (temp - 32) * 5 / 9 + 273.15
+
+        # Kelvin conversions
+        elif source == "Kelvin" and target == "Celsius":
+            result = temp - 273.15
+
+        elif source == "Kelvin" and target == "Fahrenheit":
+            result = (temp - 273.15) * 9 / 5 + 32
+
+        # Unit symbol
+        symbols = {
+            "Celsius": "°C",
+            "Fahrenheit": "°F",
+            "Kelvin": "K"
+        }
 
         result_label.config(
-            text=f"Result: {result:.2f} {unit}"
+            text=f"Result: {result:.2f} {symbols[target]}"
         )
 
     except ValueError:

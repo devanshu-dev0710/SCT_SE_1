@@ -59,9 +59,6 @@ python main.py
 
 ## Screenshot
 
-```markdown
-## Screenshot
-
 ![Temperature Converter](screenshots/temp_conv.png)
 
 ## Author

@@ -62,7 +62,7 @@ python main.py
 Add your application screenshot inside the `screenshots` folder and update the filename below if needed:
 
 ```markdown
-![Temperature Converter](screenshots/app.png)
+![Temperature Converter](screenshots/temp_conv.png)
 ```
 
 ## Author
